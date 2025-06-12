@@ -12,6 +12,15 @@ public class FileUtils {
         return Files.exists(Paths.get(targetFilePath));
     }
 
+    public static String listFilesInDirectory(Path targetFilePath) throws IOException {
+        try (DirectoryStream<Path> ds = Files.newDirectoryStream(targetFilePath)){
+            for (Path path : ds){
+                System.out.println(path);
+            }
+        }
+        return "Files listed!";
+    }
+
     //If file is smaller then 2GB
     public static String readSmallFile(String targetFilePath) throws IOException {
         return Arrays.toString(Files.readAllBytes(Paths.get(targetFilePath)));
