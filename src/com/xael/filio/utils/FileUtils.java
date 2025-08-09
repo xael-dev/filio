@@ -63,8 +63,8 @@ public class FileUtils {
             myFileWriter.write(writeContent);
             myFileWriter.close();
             System.out.println("File written!");
-        } catch (Exception e){
-            e.printStackTrace(); // TODO: Replace with better logging
+        } catch (RuntimeException e){
+            throw new RuntimeException(e);
         }
     }
 
