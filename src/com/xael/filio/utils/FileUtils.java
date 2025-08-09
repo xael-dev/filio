@@ -1,24 +1,44 @@
 package com.xael.filio.utils;
 
+import models.FileItem;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.*;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Arrays;
 
 public class FileUtils {
 
+    //Prevent instantiation of this class
+    private FileUtils(){}
     public static boolean doesFileExist(String targetFilePath){
         return Files.exists(Paths.get(targetFilePath));
     }
 
-    public static String listFilesInDirectory(Path targetFilePath) throws IOException {
+    public static void listFilesInDirectory(Path targetFilePath) throws IOException {
         try (DirectoryStream<Path> ds = Files.newDirectoryStream(targetFilePath)){
             for (Path path : ds){
+                System.out.println("Directory is accessible!\n" );
                 System.out.println(path);
             }
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
         }
-        return "Files listed!";
+    }
+
+    //TODO: Separate logic for getting file Properties in directory? Or make a method that does one and loop it? (JMH)
+    public static void listFileProperties(Path targetFilePath) throws IOException{
+        try (DirectoryStream<Path> ds = Files.newDirectoryStream(targetFilePath);) {
+            for (Path path : ds){
+                BasicFileAttributes attrs = Files.readAttributes(path, BasicFileAttributes.class);
+                FileItem detailedFileItem = new FileItem(path, attrs);
+                System.out.println(detailedFileItem);
+            }
+        } catch (RuntimeException e){
+            throw new RuntimeException(e);
+        }
     }
 
     //If file is smaller then 2GB
