@@ -5,11 +5,11 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.time.Instant;
 
 public class FileItem {
-    private String name;
-    private Path path;
-    private long size;
-    private String extension;
-    private Instant lastModified;
+    private final String name;
+    private final Path path;
+    private final long size;
+    private final String extension;
+    private final Instant lastModified;
 
     // Constructor
     public FileItem(Path path, BasicFileAttributes attrs) {
