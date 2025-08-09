@@ -1,7 +1,7 @@
 import com.xael.filio.utils.FileUtils;
+import models.FileItem;
 
 import java.io.IOException;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class Main {
@@ -9,18 +9,18 @@ public class Main {
         String currentWorkingDir = System.getProperty("user.dir");
         String homeDir = System.getProperty("user.home");
 
-        //List system properties
-        System.out.println(System.getProperties());
+        //List system properties; check OS and use for path specific formatting
+        System.out.println(System.getProperty("os.name\n"));
 
         System.out.println(currentWorkingDir + " is the current directory for the project. \n");
         System.out.println(System.getProperty("user.home") + " is the home directory for the project. \n");
 
 
-        try {
-            FileUtils.listFilesInDirectory(Paths.get(homeDir + "/Downloads/"));
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+
+//        FileUtils.listFilesInDirectory(Paths.get(homeDir + "/Downloads/"));
+        FileUtils.listFileProperties(Paths.get(homeDir + "/Downloads/"));
+
+
 
 
 
