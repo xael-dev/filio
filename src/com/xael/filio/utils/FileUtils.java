@@ -17,11 +17,20 @@ public class FileUtils {
         return Files.exists(Paths.get(targetFilePath));
     }
 
+    public static boolean isPathDir(Path targetFilePath) {
+        if (Files.isDirectory(targetFilePath)){
+            return true;
+        }
+
+        return false;
+    }
+
     public static void listFilesInDirectory(Path targetFilePath) throws IOException {
         try (DirectoryStream<Path> ds = Files.newDirectoryStream(targetFilePath)){
             for (Path path : ds){
-                System.out.println("Directory is accessible!\n" );
-                System.out.println(path);
+                if (isPathDir(path)){
+                    System.out.println(path);
+                }
             }
         } catch (RuntimeException e) {
             throw new RuntimeException(e);
