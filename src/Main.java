@@ -17,13 +17,7 @@ public class Main {
 
 
 
-//        FileUtils.listFilesInDirectory(Paths.get(homeDir + "/Downloads/"));
-        FileUtils.listFileProperties(Paths.get(homeDir + "/Downloads/"));
-
-
-
-
-
-
+        FileUtils.listFilesInDirectory(Paths.get(homeDir));
+        // FileUtils.listFileProperties(Paths.get(homeDir));
     }
 }
